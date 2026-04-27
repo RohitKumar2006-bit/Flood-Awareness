@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FloodWatch — Flood Awareness Information System</title>
+  <link rel="stylesheet" href="flood awareness CSS.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ========== RAIN CANVAS ========== -->
+  <canvas id="rainCanvas"></canvas>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🌊</span>
+        <div class="logo-text">
+          <span class="logo-title">FloodWatch</span>
+          <span class="logo-sub">Flood Awareness Information System</span>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="#search-section">Search</a>
+        <a href="#guidelines-section">Safety</a>
+        <a href="#about-section">About</a>
+      </nav>
+      <div class="header-badge">
+        <span class="pulse-dot"></span>
+        <span>LIVE MONITORING</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">⚠️ Stay Informed. Stay Safe.</p>
+      <h1 class="hero-title">Know Your<br /><em>Flood Risk</em></h1>
+      <p class="hero-desc">
+        Access real-time flood risk data, historical events, and emergency contacts
+        for your area. Knowledge is your first line of defence.
+      </p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="stat-num">48</span>
+        <span class="stat-label">Locations Monitored</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">12</span>
+        <span class="stat-label">High Risk Zones</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">24/7</span>
+        <span class="stat-label">Emergency Support</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SEARCH SECTION ========== -->
+  <section class="search-section" id="search-section">
+    <div class="container">
+      <div class="section-label">📍 Location Search</div>
+      <h2 class="section-title">Find Your Area's Flood Data</h2>
+      <div class="search-bar">
+        <div class="search-input-wrap">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            id="locationInput"
+            placeholder="Enter city or village name..."
+            autocomplete="off"
+          />
+          <div id="autocomplete-dropdown" class="autocomplete-dropdown"></div>
+        </div>
+        <button id="searchBtn" onclick="searchLocation()">
+          <span>Search</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+      <div class="search-tags">
+        <span class="tag-label">Quick Search:</span>
+        <!-- Populated by JS -->
+        <div id="quickTags" class="tags-row"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RESULTS SECTION ========== -->
+  <section class="results-section" id="results-section">
+    <div class="container">
+      <!-- Result card injected here by JS -->
+      <div id="resultContainer"></div>
+
+      <!-- No result state -->
+      <div id="noResult" class="no-result hidden">
+        <div class="no-result-icon">🌐</div>
+        <h3>Location Not Found</h3>
+        <p>We don't have data for this location yet. Try a different city or village name.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SAFETY GUIDELINES ========== -->
+  <section class="guidelines-section" id="guidelines-section">
+    <div class="container">
+      <div class="section-label">🛡️ Safety Protocols</div>
+      <h2 class="section-title">Flood Safety Guidelines</h2>
+      <div class="guidelines-grid">
+
+        <div class="guideline-card">
+          <div class="guideline-icon">⛰️</div>
+          <h3>Move to Higher Ground</h3>
+          <p>At the first sign of rising water, evacuate to higher elevations immediately. Don't wait for official orders if danger is visible.</p>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-icon">🚫</div>
+          <h3>Avoid Flood Water</h3>
+          <p>Never walk or drive through floodwater. Just 15 cm of moving water can knock you down; 30 cm can sweep a vehicle away.</p>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-icon">🎒</div>
+          <h3>Emergency Kit Ready</h3>
+          <p>Keep a kit with 3 days of water, food, torch, first-aid, medications, documents, and a battery-powered radio.</p>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-icon">⚡</div>
+          <h3>Turn Off Electricity</h3>
+          <p>Switch off all electrical appliances and the main power supply before floodwater enters your home to prevent electrocution.</p>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-icon">📞</div>
+          <h3>Stay in Contact</h3>
+          <p>Inform family of your location. Keep your phone charged. Monitor official broadcasts and emergency alerts at all times.</p>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-icon">🏠</div>
+          <h3>Protect Your Home</h3>
+          <p>Move valuables and furniture to upper floors. Use sandbags at entry points. Seal gaps around doors and windows.</p>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-icon">💊</div>
+          <h3>Prevent Disease</h3>
+          <p>After floods, boil drinking water, avoid contact with contaminated water, and watch for symptoms of waterborne illness.</p>
+        </div>
+
+        <div class="guideline-card">
+          <div class="guideline-icon">🗺️</div>
+          <h3>Know Your Route</h3>
+          <p>Plan evacuation routes in advance. Know the location of shelters. Practice the plan with all family members.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT SECTION ========== -->
+  <section class="about-section" id="about-section">
+    <div class="container about-inner">
+      <div class="about-text">
+        <div class="section-label">ℹ️ About FloodWatch</div>
+        <h2 class="section-title">Built for Communities at Risk</h2>
+        <p>FloodWatch is a public-awareness platform designed to help individuals, families, and local authorities quickly access flood risk information. Our database covers flood-prone regions, historical event data, and direct emergency contacts.</p>
+        <p>Data is compiled from government meteorological departments, disaster management authorities, and historical flood records.</p>
+      </div>
+      <div class="about-callout">
+        <div class="callout-icon">🆘</div>
+        <h3>National Emergency</h3>
+        <p class="callout-number">112</p>
+        <p>India's unified emergency helpline — available 24/7 for police, fire, and disaster response.</p>
+        <a class="callout-link" href="tel:112">Call Now →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-icon">🌊</span>
+        <span class="footer-title">FloodWatch</span>
+      </div>
+      <p class="footer-tagline">Stay aware. Stay safe. Every second counts.</p>
+      <div class="footer-links">
+        <span>© 2025 FloodWatch</span>
+        <span>·</span>
+        <span>Flood Awareness Information System</span>
+        <span>·</span>
+        <span>For Public Use Only</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="Flood awareness javascript.js"></script>
+</body>
+</html>
